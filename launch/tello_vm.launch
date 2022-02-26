@@ -1,0 +1,22 @@
+<launch>
+  <include file="$(find tello_driver)/launch/tello_teloop.launch">
+  </include>
+
+  <include file="$(find image_undistort)/launch/tello_undistort.launch">
+  </include>
+
+  <include file="$(find aruco_ros)/launch/single.launch">
+  </include>
+  <!-- <include file="$(find orb_slam_2_ros)/launch/orb_slam2_vm.launch">
+
+  </include> -->
+
+  <!-- <node pkg="tello_vm" type="tello_command_callback" name="tello_command_callback" output="screen">
+
+  </node> -->
+  <arg name="rviz" default="true" />
+  <group if="$(arg rviz)">
+    <node launch-prefix="nice" pkg="rviz" type="rviz" name="rviz" args="-d $(find tello_vm)/rviz_config/rviz_vm.rviz" />
+  </group>
+  <!-- <node pkg="vm_pixhawk" name="vm_aruco_process" type="vm_arco_image_process.py" output="screen"></node> -->
+</launch>
